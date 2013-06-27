@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Schema</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/json-schema.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>JSON Schema</h1>
+    </div>
+
+    <div class="main">
+        <ul id="struct-root" class="tree-ul"></ul>
+    </div>
+
+    <div class="op">
+        <textarea id="json-data"></textarea>
+        <a class="btn btn-primary" href="javascript:;" id="get-json">获取JSON</a>
+        <a class="btn btn-success" href="javascript:;" id="set-json">设置JSON</a>
+    </div>
+
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script type="text/template" id="tmpl-addNode">
+<li class="tree-li">
+    <div class="add-main">
+        <a title="添加新的节点" href="javascript:;" class="node node-add">
+            <i class="icon-plus"></i>
+        </a>
+        <div class="add-container" style="display:none;">
+            <div class="add-header">
+                <ul class="">
+                    <li><a data-type="leaf" class="cur" href="javascript:;">Leaf</a></li>
+                    <li><a data-type="object" href="javascript:;">Object</a></li>
+                    <li><a data-type="list" href="javascript:;">List</a></li>
+                </ul>
+            </div>
+            <div class="add-body">
+                <form class="form-horizontal add-form">
+                    <div class="control-group">
+                        <label class="control-label">键值</label>
+                        <div class="controls">
+                            <input type="text" placeholder="key" name="key" required pattern="[A-z][\w]*" title="please use alpha, _, digits, and starts with alpha">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" >描述</label>
+                        <div class="controls">
+                            <input type="text" placeholder="description" name="desc" required>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="reset" class="btn">取消</button>
+                            <button type="submit" class="btn btn-primary">添加</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</li>
+    </script>
+
+    <script type="text/template" id="tmpl-node">
+<li class="tree-li tree-node">
+    <div class="node-key">
+        <a title="" href="javascript:;" class="node btn $color$"><i class="$icon$"></i> $key$</a>
+        <a class="node-remove" href="javascript:;"><i class="icon-minus"></i></a>
+    </div>
+    <ul class="tree-ul"></ul>
+</li>
+    </script>
+
+    <script type="text/javascript" src="js/json-schema.js"></script>
+    <script type="text/javascript">
+        var editor = new JsonSchema.Editor({root: $("#struct-root")});
+        editor.init();
+
+        editor.setData([{
+            key: "title",
+            type: "leaf",
+            desc: "标题"
+        }, {
+            key: "content",
+            type: "object",
+            desc: "内容",
+            struct: [{
+                key: "text",
+                type: "leaf",
+                desc: "内容文案"
+            }, {
+                key: "image",
+                type: "leaf",
+                desc: "内容图片"
+            }, {
+                key: "timestamp",
+                type: "leaf",
+                desc: "内容时间"
+            }]
+        }, {
+            key: "comments",
+            type: "list",
+            desc: "评论",
+            struct: [{
+                key: "text",
+                type: "leaf",
+                desc: "评论文案"
+            }, {
+                key: "type",
+                type: "leaf",
+                desc: "评论类型"
+            }, {
+                key: "star",
+                type: "leaf",
+                desc: "评论打分"
+            }]
+        }]);
+
+        $("#set-json").on("click", function() {
+            editor.setData(JSON.parse($("#json-data").val()));
+        });
+
+        $("#get-json").on("click", function() {
+            $("#json-data").val(editor.getJSON());
+        });
+    </script>
+</body>
+</html>
