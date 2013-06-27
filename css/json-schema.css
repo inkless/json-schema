@@ -1,0 +1,86 @@
+ul.tree-ul {
+    list-style-type: none;
+    margin-left: 40px;
+}
+
+li.tree-li {
+    line-height: 35px;
+}
+
+.tree-li a.node {
+    /*display: block;*/
+    border-radius: 0;
+    /*width: 120px;*/
+}
+a.node-add {
+    width: 30px;
+    text-align: center;
+    display: block;
+}
+a.node-add:hover, a.node-add.hover {
+    background: #999;
+}
+
+.add-main {
+    position: relative;
+}
+
+.add-container {
+    width: 420px;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 30px;
+    z-index: 100;
+}
+
+.add-header {
+    padding: 0;
+    margin: 0;
+}
+
+.add-header ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background: #333;
+}
+.add-header {
+    height: 35px;
+}
+.add-header li {
+    display: inline-block;
+    width: 135px;
+    line-height: 35px;
+}
+.add-header li a {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #999;
+}
+.add-header li a.cur, .add-header li a:hover {
+    color: #eee;
+}
+
+.add-body {
+    background: #fff;
+}
+.add-form {
+    padding-top: 10px;
+    border: 1px #333 solid;
+}
+.add-form .control-label {
+    width: 100px;
+}
+.add-form .controls {
+    margin-left: 120px;
+}
+
+a.node-remove {
+    display: none;
+}
+
+div.node-key:hover >a.node-remove {
+    display: inline-block;
+}

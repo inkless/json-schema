@@ -1,0 +1,45 @@
+body {
+    background: #333;
+}
+.header {
+    background: #ffc77d;
+    margin: 20px;
+    height: 70px;
+
+}
+.header h1 {
+    color: #333;
+    float: right;
+    font-size: 50pt;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    margin: 0px;
+    font-family: verdana, arial, sans-serif;
+}
+.main {
+    margin: 20px;
+    min-height: 600px;
+    background: #fff;
+    padding: 10px;
+}
+
+
+.op {
+    width: 200px;
+    position: fixed;
+    height: 230px;
+    top: 120px;
+    right: 30px;
+    background: #eee;
+    padding: 20px;
+}
+
+.op a {
+    /*display: inline-block;*/
+}
+
+#json-data {
+    width: 190px;
+    height: 180px;
+}
