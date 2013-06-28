@@ -1,3 +1,7 @@
+.js-box a, .tree-ul a {
+    border-radius: 0;
+}
+
 ul.tree-ul {
     list-style-type: none;
     margin-left: 40px;
@@ -7,25 +11,21 @@ li.tree-li {
     line-height: 35px;
 }
 
-.tree-li a.node {
-    /*display: block;*/
-    border-radius: 0;
-    /*width: 120px;*/
-}
-a.node-add {
+.tree-li a.node-add {
     width: 30px;
     text-align: center;
     display: block;
 }
-a.node-add:hover, a.node-add.hover {
+.tree-li a.node-add:hover,
+.tree-li a.node-add.hover {
     background: #999;
 }
 
-.add-main {
+.tree-li .add-main {
     position: relative;
 }
 
-.add-container {
+.tree-li .add-container {
     width: 420px;
     padding: 0;
     position: absolute;
@@ -34,53 +34,119 @@ a.node-add:hover, a.node-add.hover {
     z-index: 100;
 }
 
-.add-header {
+.tree-li .add-header {
     padding: 0;
     margin: 0;
+    height: 35px;
 }
 
-.add-header ul {
+.tree-li .add-header ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     background: #333;
 }
-.add-header {
-    height: 35px;
-}
-.add-header li {
+.tree-li .add-header li {
     display: inline-block;
     width: 135px;
     line-height: 35px;
 }
-.add-header li a {
+.tree-li .add-header li a {
     display: block;
     text-align: center;
     text-decoration: none;
     color: #999;
 }
-.add-header li a.cur, .add-header li a:hover {
+.tree-li .add-header li a.cur,
+.tree-li .add-header li a:hover {
     color: #eee;
 }
 
-.add-body {
+.tree-li .add-body {
     background: #fff;
 }
-.add-form {
+.tree-li .add-form {
     padding-top: 10px;
     border: 1px #333 solid;
 }
-.add-form .control-label {
+.tree-li .add-form .control-label {
     width: 100px;
 }
-.add-form .controls {
+.tree-li .add-form .controls {
     margin-left: 120px;
 }
 
-a.node-remove {
+.tree-li a.node-remove {
     display: none;
 }
 
-div.node-key:hover >a.node-remove {
+.tree-li .node-key:hover >.node-remove {
     display: inline-block;
 }
+
+
+
+
+/**
+ * set data
+ */
+.js-box {
+    margin: 0;
+    padding: 20px;
+    border: 1px #ccc solid;
+}
+
+.js-box input {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.js-table {
+    display: table;
+    margin: auto;
+    /*text-align: center;*/
+}
+
+.js-table-item {
+    width: 220px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.js-table-key a {
+    display: block;
+}
+.js-table-value {
+    text-align: center;
+}
+.js-table-value a {
+    width: 194px;
+}
+
+.js-list-name {
+    display: inline-block;
+    border: 1px #ccc solid;
+    border-bottom: none;
+    line-height: 21px;
+    padding: 4px 12px;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.js-extend {
+    margin-top: 10px;
+}
+
+.js-test {
+    height: 200px;
+    background: #eee;
+}
+
+
+
+
+
+
+
+
+

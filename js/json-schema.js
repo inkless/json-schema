@@ -148,8 +148,8 @@
      * get HTMLs
      */
     Editor.html = {};
-    Editor.html.addNode = $("#tmpl-addNode").html().trim();
-    Editor.html.node = $("#tmpl-node").html().trim();
+    Editor.html.addNode = $.trim($("#tmpl-addNode").html());
+    Editor.html.node = $.trim($("#tmpl-node").html());
 
     /**
      * Configuration
@@ -162,7 +162,7 @@
         },
         icon: {
             leaf: "icon-leaf",
-            object: "icon-fire",
+            object: "icon-star",
             list: "icon-th-list"
         }
     };
