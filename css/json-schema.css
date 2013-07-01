@@ -152,7 +152,13 @@ li.tree-li {
     background: #eee;
 }
 
+.modal-body-left {
+    float: left;
+}
 
+.modal-body-right {
+    float: right;
+}
 
 
 

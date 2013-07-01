@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/json-schema.css">
+    <link rel="stylesheet" href="css/pikaday.css">
 </head>
 <body>
 
@@ -115,7 +116,7 @@
                                         <div class="js-table">
                                             <div class="js-table-item">
                                                 <div class="js-table-key">
-                                                    <a href="#" class="btn"><i class="icon-leaf"></i> head</a>
+                                                    <a href="#" class="btn"><i class="icon-leaf"></i> text</a>
                                                 </div>
                                                 <div class="js-table-value">
                                                     <input type="text" />
@@ -123,18 +124,22 @@
                                             </div>
                                             <div class="js-table-item">
                                                 <div class="js-table-key">
-                                                    <a href="#" class="btn"><i class="icon-leaf"></i> middle</a>
+                                                    <a href="#" class="btn"><i class="icon-leaf"></i> select</a>
                                                 </div>
                                                 <div class="js-table-value">
-                                                    <input type="text" />
+                                                    <select>
+                                                        <option value="1">Value 1</option>
+                                                        <option value="2">Value 2</option>
+                                                        <option value="3">Value 3</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="js-table-item">
                                                 <div class="js-table-key">
-                                                    <a href="#" class="btn"><i class="icon-leaf"></i> end</a>
+                                                    <a href="#" class="btn"><i class="icon-leaf"></i> datepicker</a>
                                                 </div>
                                                 <div class="js-table-value">
-                                                    <input type="text" />
+                                                    <input type="text" class="datepicker" />
                                                 </div>
                                             </div>
                                             <div class="js-table-item">
@@ -142,7 +147,7 @@
                                                     <a href="#" class="btn"><i class="icon-leaf"></i> image</a>
                                                 </div>
                                                 <div class="js-table-value">
-                                                    <input type="text" />
+                                                    <a href="#upload-image" role="button" class="btn btn-primary" data-toggle="modal">Upload</a>
                                                     <img src="img/gyy.jpg" alt="" style="height:150px">
                                                 </div>
                                             </div>
@@ -233,10 +238,46 @@
             </div>
         </div>
     </div>
+
+    <div id="upload-image" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="upload-image-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="upload-image-label">上传图片</h3>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body-left">
+                <label>存储路径选择</label>
+                <select name="path">
+                    <option value="1">/a/b</option>
+                    <option value="2">/a/c</option>
+                    <option value="3">/a/d</option>
+                </select>
+                <label>类型</label>
+                <select name="type">
+                    <option value="1">Type A</option>
+                    <option value="2">Type B</option>
+                    <option value="3">Type C</option>
+                </select>
+                <label>上传图片</label>
+                <a href="javascript:;" class="btn btn-primary">Upload</a>
+            </div>
+            <div class="modal-body-right">
+                <img src="img/gyy.jpg" alt="" style="height:150px">
+            </div>
+            <div style="clear:both; height:0;"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+            <button class="btn btn-primary">保存</button>
+        </div>
+    </div>
+
     
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/jquery.sortable.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pikaday.js"></script>
 
     <script type="text/javascript" src="js/json-schema.js"></script>
     <script type="text/javascript">
@@ -253,7 +294,10 @@
                 $box.slideDown();
                 $(this).html('收起 <i class="icon-chevron-up"></i>');
             }
-        })
+        });
+
+        $("input.datepicker").pikaday({format: "YYYY-MM-DD"})
+
     </script>
 </body>
 </html>
