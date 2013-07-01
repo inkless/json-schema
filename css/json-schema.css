@@ -92,7 +92,7 @@ li.tree-li {
  */
 .js-box {
     margin: 0;
-    padding: 20px;
+    padding: 10px 20px 20px;
     border: 1px #ccc solid;
 }
 
@@ -133,8 +133,18 @@ li.tree-li {
     vertical-align: middle;
 }
 
-.js-extend {
+.js-box-head a {
+    cursor: move;
+}
+
+.js-list-head {
     margin-top: 10px;
+}
+
+.sortable-placeholder {
+    border: 1px dashed #ccc;
+    background: none;
+    height: 100px;
 }
 
 .js-test {
