@@ -93,9 +93,12 @@
 
     <script type="text/javascript" src="js/json-schema.js"></script>
     <script type="text/javascript">
-        var dataSchema = [{"key":"title","desc":"title","type":"leaf"},{"key":"content","desc":"content","type":"object","struct":[{"key":"title","desc":"t","type":"leaf"},{"key":"text","desc":"tt","type":"leaf"}]},{"key":"comments","desc":"comments","type":"list","struct":[{"key":"text","desc":"text","type":"leaf"},{"key":"body","desc":"body","type":"object","struct":[{"key":"text","desc":"t","type":"leaf","input":{"type":"text"}},{"key":"time","desc":"time","type":"leaf","input":{"type":"time"}},{"key":"image","desc":"image","type":"leaf","input":{"type":"image"}}]},{"key":"score","desc":"score","type":"leaf"}]},{"key":"version","desc":"version","type":"leaf"},{"key":"notice","desc":"notice","type":"leaf"}];
+        // var dataSchema = [{"key":"title","desc":"title","type":"leaf"},{"key":"content","desc":"content","type":"object","struct":[{"key":"title","desc":"t","type":"leaf"},{"key":"text","desc":"tt","type":"leaf"}]},{"key":"comments","desc":"comments","type":"list","struct":[{"key":"text","desc":"text","type":"leaf"},{"key":"body","desc":"body","type":"object","struct":[{"key":"text","desc":"t","type":"leaf","input":{"type":"text"}},{"key":"time","desc":"time","type":"leaf","input":{"type":"time"}},{"key":"image","desc":"image","type":"leaf","input":{"type":"image"}}]},{"key":"score","desc":"score","type":"leaf"}]},{"key":"version","desc":"version","type":"leaf"},{"key":"notice","desc":"notice","type":"leaf"}];
 
         // var dataSchema = [{"key":"root","desc":"root","type":"list","struct":[{"key":"remarks","desc":"备注","type":"leaf"},{"key":"expand","desc":"是否展开","type":"leaf"},{"key":"title","desc":"标题","type":"leaf"},{"key":"list","desc":"列表信息","type":"object","struct":[{"key":"title","desc":"标题","type":"leaf"},{"key":"web_url","desc":"web url","type":"leaf"},{"key":"wap_url","desc":"wap url","type":"leaf"},{"key":"highlight","desc":"是否高亮","type":"leaf"},{"key":"remarks","desc":"备注","type":"leaf"}]}]}];
+        
+        var dataSchema = [{"key":"root","desc":"root","type":"list","struct":[{"key":"remarks","desc":"备注","type":"leaf"},{"key":"expand","desc":"是否展开","type":"leaf"},{"key":"title","desc":"标题","type":"leaf"},{"key":"list","desc":"列表信息","type":"object","struct":[{"key":"title","desc":"标题","type":"leaf"},{"key":"web_url","desc":"web url","type":"leaf"},{"key":"wap_url","desc":"wap url","type":"leaf"},{"key":"highlight","desc":"是否高亮","type":"leaf"},{"key":"remarks","desc":"备注","type":"leaf"},{"key":"time","desc":"时间","type":"leaf","input":{"type":"time"}},{"key":"image","desc":"图片","type":"leaf","input":{"type":"image"}}]}]}];
+
         var currentData = {
             root: [{
                 remarks: '这是一个备注',
@@ -106,7 +109,9 @@
                     web_url: 'http://www.baidu.com',
                     wap_url: 'http://m.baidu.com',
                     highlight: 1,
-                    remarks: '没啥了'
+                    remarks: '没啥了',
+                    time: '2013-07-10',
+                    image: ''
                 }
             }, {
                 remarks: '这是另一个备注',
@@ -117,7 +122,9 @@
                     web_url: 'http://www.baidu.com/video',
                     wap_url: 'http://m.baidu.com/video',
                     highlight: 1,
-                    remarks: '没啥了'
+                    remarks: '没啥了',
+                    time: '2013-07-12',
+                    image: ''
                 }
             }]
         };

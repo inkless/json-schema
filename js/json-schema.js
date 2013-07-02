@@ -192,10 +192,17 @@
         $(document).on("click", $.proxy(this.hide, this));
         this.node.on("click", function(e) {e.stopPropagation(); });
 
+        var me = this;
         // handle form header
         this.formHeader.on("click", "a", function() {
             $(this).parent().parent().find("a").removeClass("cur");
             $(this).addClass("cur");
+
+            if ($(this).data("type") == "leaf") {
+                me.form.find(".input-type").show();
+            } else {
+                me.form.find(".input-type").hide();
+            }
         });
 
         // set form cb
@@ -224,6 +231,11 @@
                 desc: me.form.find('input[name="desc"]').val(),
                 type: me.formHeader.find(".cur").data("type")
             };
+            if (v.type == "leaf") {
+                v.input = {
+                    type: me.form.find('select').val()
+                };
+            }
             cb(me.root, v);
             me.hide();
         });
