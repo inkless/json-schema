@@ -135,6 +135,7 @@ li.tree-li {
 
 .js-box-head a {
     cursor: move;
+    float: left;
 }
 
 .js-list-head {
