@@ -24,6 +24,12 @@
             return("" + str).replace(/\$(\w+)\$/g, function(a, b) {
                 return typeof conf[b] != "undefined" ? conf[b] : "$" + b + "$"
             });
+        },
+        isEmptyObject: function(obj) {
+            for (var i in obj) {
+                return false;
+            }
+            return true;
         }
     };
 
@@ -227,10 +233,221 @@
      * Data Editor
      */
 
-    var dataEditor = function() {
+    var dataEditor = function(options) {
+        this.options = options || {};
+        this.options.root = this.options.root || "body";
+        this.options.data = this.options.data || null;
+
+        if (!this.options.schema &&  $.isArray(this.options.schema))
+            throw new Exception('invalid schema');
+
+        if (!this._inited) this.init();
+    };
+
+    dataEditor.prototype.init = function() {
+        if (this._inited) return;
+
+        dataEditor.html.valueText = '<input type="text" />';
+        dataEditor.html.valueDatePicker = '<input type="text" class="datepicker" />';
+        dataEditor.html.valueExpand = '<a href="javascript:;" class="btn ">展开 <i class="icon-chevron-down"></i> </a>';
+        dataEditor.html.valueCollapse = '<a href="javascript:;" class="btn btn-warning">收起 <i class="icon-chevron-up"></i> </a>';
+        dataEditor.html.valueUpload = '<a href="#upload-image" role="button" class="btn btn-primary" data-toggle="modal">Upload</a><input type="hidden" />';
+
+        dataEditor.html.box = $.trim($("#tmpl-box").html());
+        dataEditor.html.tableItem = $.trim($("#tmpl-table-item").html());
+        dataEditor.html.extend = $.trim($("#tmpl-extend").html());
+
+        this.appendBox(this.options.root, this.options.schema);
+
+        this.setData(this.options.data);
+
+        this._inited = true;
+    };
+
+    dataEditor.prototype.appendBox = function(el, schema, isList) {
+
+        var box = $(dataEditor.html.box).appendTo(el);
+        var table = box.find(".js-table");
+
+        if (isList) box.find(".js-box-head").show();
+
+        for (var i = 0, len = schema.length; i < len; ++i) {
+            var itemHtml = utils.template(dataEditor.html.tableItem, {
+                node_type_class: Editor.config.icon[schema[i].type],
+                node_name: schema[i].key,
+                color: Editor.config.color[schema[i].type]
+            });
+            var tableItem = $(itemHtml).appendTo(table);
+            tableItem.find(".js-table-key a").prop("title", schema[i].desc).tooltip();
+
+            var saveData = {
+                key: schema[i].key,
+                type: schema[i].type
+            };
+            if (schema[i].input) saveData.input = schema[i].input;
+
+            tableItem.data("item", saveData);
+
+            var tableValue = tableItem.find(".js-table-value");
+            this.appendTableValue(tableValue, schema[i]);
+
+            if (schema[i].type != "leaf") {
+                this.appendExtend(box, schema[i], tableItem);
+            }
+        }
 
     };
 
+    dataEditor.prototype.appendTableValue = function(el, node) {
+        var valueHtml;
+        if (node.type != "leaf") {
+            valueHtml = dataEditor.html.valueExpand;
+
+            $(el).append(valueHtml);
+
+        } else {
+            var inputType = "text";
+            if (node.input) inputType = node.input.type;
+
+            switch (inputType) {
+                case "text":
+                valueHtml = dataEditor.html.valueText;
+                break;
+                case "time":
+                valueHtml = dataEditor.html.valueDatePicker;
+                break;
+                case "image":
+                valueHtml = dataEditor.html.valueUpload;
+                break;
+            }
+
+            var v = $(valueHtml).appendTo(el);
+
+            if (inputType === "time") v.pikaday({format: "YYYY-MM-DD"});
+        }
+    };
+
+    dataEditor.prototype.appendExtend = function(el, node, item) {
+        var extendHtml = utils.template(dataEditor.html.extend, {
+            node_type_class: Editor.config.icon[node.type],
+            node_name: node.key,
+            color: Editor.config.color[node.type]
+        });
+
+        var extend = $(extendHtml).appendTo(el);
+        var isList = (node.type === "list");
+        this.appendBox(extend.find(">.js-list-body"), node.struct, isList);
+
+        if (isList) {
+            var me = this;
+            extend.find(">.js-list-head .js-list-add").show().on("click", function() {
+                me.appendBox(extend.find(">.js-list-body"), node.struct, true);
+                extend.find(">.js-list-body").sortable("destroy");
+                extend.find(">.js-list-body").sortable({
+                    handle: '.js-box-head'
+                });
+            });
+            extend.find(">.js-list-body").sortable({
+                handle: '.js-box-head'
+            });
+        }
+
+        if (item) {
+            this._bindExpandEvent(item, extend);
+        }
+
+    };
+
+    dataEditor.prototype._bindExpandEvent = function(item, extend) {
+        $(item).data("extend", extend);
+        var btn = $(item).find(".js-table-value a");
+        $(btn).on("click", function() {
+            if (extend.is(":visible")) {
+                $(this).removeClass("btn-warning").html('展开 <i class="icon-chevron-down"></i>');
+                extend.slideUp();
+            } else {
+                extend.slideDown();
+                $(this).addClass("btn-warning").html('收起 <i class="icon-chevron-up"></i>');
+            }
+        });
+    };
+
+    dataEditor.prototype.setData = function(jsonData) {
+        if (!jsonData || utils.isEmptyObject(jsonData)) return;
+
+        var _setBoxData = function(box, data) {
+            $(box).find(">.js-data .js-table-item").each(function(index) {
+                var itemData = $(this).data("item");
+
+                switch (itemData.type) {
+                    case "leaf":
+                    $(this).find("input").val(data[itemData.key]);
+                    break;
+                    case "object":
+                    _setBoxData($(this).data("extend").find(">.js-list-body>.js-box"), data[itemData.key]);
+                    break;
+                    case "list":
+                    var listBody = $(this).data("extend").find(">.js-list-body");
+                    listBody.empty();
+
+                    for (var i = 0, len = data[itemData.key].length; i < len; ++i) {
+                        listBody.parent().find(">.js-list-head .js-list-add").click();    
+                    }
+
+                    listBody.sortable("destroy");
+                    listBody.sortable({
+                        handle: '.js-box-head'
+                    });
+
+                    listBody.find(">.js-box").each(function(index) {
+                        _setBoxData(this, data[itemData.key][index]);
+                    });
+                    break;
+                }
+            });
+        };
+
+        return _setBoxData($(this.options.root).find(">.js-box"), jsonData);
+    };
+
+    dataEditor.prototype.getData = function() {
+
+        var _getBoxData = function(box) {
+
+            var obj = {};
+
+            $(box).find(">.js-data .js-table-item").each(function(index) {
+
+                var itemData = $(this).data("item");
+                switch (itemData.type) {
+                    case "leaf":
+                    obj[itemData.key] = $(this).find("input").val();
+                    break;
+                    case "object":
+                    obj[itemData.key] = _getBoxData($(this).data("extend").find(">.js-list-body>.js-box"));
+                    break;
+                    case "list":
+                    var ar = [];
+                    $(this).data("extend").find(">.js-list-body>.js-box").each(function() {
+                        ar.push(_getBoxData(this));
+                    });
+                    obj[itemData.key] = ar;
+                    break;
+                }
+            });
+
+            return obj;
+
+        };
+
+        return _getBoxData($(this.options.root).find(">.js-box"));
+    };
+
+    dataEditor.prototype.getJSON = function() {
+        return  JSON.stringify(this.getData());
+    };
+
+    dataEditor.html = {};
 
     /**
      * Popup Editor

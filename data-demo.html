@@ -1,0 +1,305 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JSON Schema</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/json-schema.css">
+    <link rel="stylesheet" href="css/pikaday.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>JSON Schema</h1>
+    </div>
+
+    <div class="main">
+        <div class="js-box">
+            <div class="js-data">
+                <div class="js-table">
+                    <div class="js-table-item">
+                        <div class="js-table-key">
+                            <a href="#" class="btn"><i class="icon-leaf"></i> title</a>
+                        </div>
+                        <div class="js-table-value">
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="js-table-item">
+                        <div class="js-table-key">
+                            <a href="#" class="btn btn-success"><i class="icon-star"></i> content</a>
+                        </div>
+                        <div class="js-table-value">
+                            <a href="#" class="btn ">展开 <i class="icon-chevron-down"></i> </a>
+                        </div>
+                    </div>
+                    <div class="js-table-item">
+                        <div class="js-table-key">
+                            <a href="#" class="btn btn-info"><i class="icon-th-list"></i> comments</a>
+                        </div>
+                        <div class="js-table-value">
+                            <a href="#" class="btn btn-warning" id="tt">收起 <i class="icon-chevron-up"></i> </a>
+                        </div>
+                    </div>
+                    <div class="js-table-item">
+                        <div class="js-table-key">
+                            <a href="#" class="btn"><i class="icon-leaf"></i> version</a>
+                        </div>
+                        <div class="js-table-value">
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div class="js-table-item">
+                        <div class="js-table-key">
+                            <a href="#" class="btn"><i class="icon-leaf"></i> notice</a>
+                        </div>
+                        <div class="js-table-value">
+                            <input type="text" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="js-extend">
+                <div class="js-list-head">
+                    <a class="js-list-name"><i class="icon-th-list"></i> comments</a>
+                    <a href="#" class="btn btn-primary"><i class="icon-plus"></i> 添加</a>
+                </div>
+                <div class="js-list-body sortable">
+                    <div class="js-box">
+                        <div class="js-box-head">
+                            <a href="javascript:;"><i class="icon-bookmark"></i> Drag!</a>
+                        </div>
+                        <div class="js-data">
+                            <div class="js-table">
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn"><i class="icon-leaf"></i> text</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn btn-success"><i class="icon-star"></i> body</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <a href="#" class="btn btn-warning">收起 <i class="icon-chevron-up"></i> </a>
+                                    </div>
+                                </div>
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn"><i class="icon-leaf"></i> timestamp</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn"><i class="icon-leaf"></i> score</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="js-extend">
+                            <div class="js-list-head">
+                                <a class="js-list-name"><i class="icon-star"></i> body</a>
+                            </div>
+                            <div class="js-list-body">
+                                <div class="js-box">
+                                    <div class="js-data">
+                                        <div class="js-table">
+                                            <div class="js-table-item">
+                                                <div class="js-table-key">
+                                                    <a href="#" class="btn" title="文字描述"><i class="icon-leaf"></i> text</a>
+                                                </div>
+                                                <div class="js-table-value">
+                                                    <input type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="js-table-item">
+                                                <div class="js-table-key">
+                                                    <a href="#" class="btn" title="选择类型"><i class="icon-leaf"></i> select</a>
+                                                </div>
+                                                <div class="js-table-value">
+                                                    <select>
+                                                        <option value="1">Value 1</option>
+                                                        <option value="2">Value 2</option>
+                                                        <option value="3">Value 3</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="js-table-item">
+                                                <div class="js-table-key">
+                                                    <a href="#" class="btn" title="时间"><i class="icon-leaf"></i> datepicker</a>
+                                                </div>
+                                                <div class="js-table-value">
+                                                    <input type="text" class="datepicker" />
+                                                </div>
+                                            </div>
+                                            <div class="js-table-item">
+                                                <div class="js-table-key">
+                                                    <a href="#" class="btn" title="图片"><i class="icon-leaf"></i> image</a>
+                                                </div>
+                                                <div class="js-table-value">
+                                                    <a href="#upload-image" role="button" class="btn btn-primary" data-toggle="modal">Upload</a>
+                                                    <img src="img/gyy.jpg" alt="" style="height:150px">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="js-extend"></div>
+                                </div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="js-box">
+                        <div class="js-box-head">
+                            <a href="javascript:;"><i class="icon-bookmark"></i> Drag!</a>
+                        </div>
+                        <div class="js-data">
+                            <div class="js-table">
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn"><i class="icon-leaf"></i> text</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn btn-success"><i class="icon-star"></i> body</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <a href="#" class="btn ">展开 <i class="icon-chevron-down"></i> </a>
+                                    </div>
+                                </div>
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn"><i class="icon-leaf"></i> timestamp</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                                <div class="js-table-item">
+                                    <div class="js-table-key">
+                                        <a href="#" class="btn"><i class="icon-leaf"></i> score</a>
+                                    </div>
+                                    <div class="js-table-value">
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="js-extend" style="display:none;">
+                            <div class="js-list-body">
+                                <div class="js-box">
+                                    <div class="js-data">
+                                        <div class="js-table">
+                                            <div class="js-table-item">
+                                                <div class="js-table-key">
+                                                    <a href="#" class="btn"><i class="icon-leaf"></i> head</a>
+                                                </div>
+                                                <div class="js-table-value">
+                                                    <input type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="js-table-item">
+                                                <div class="js-table-key">
+                                                    <a href="#" class="btn"><i class="icon-leaf"></i> middle</a>
+                                                </div>
+                                                <div class="js-table-value">
+                                                    <input type="text" />
+                                                </div>
+                                            </div>
+                                            <div class="js-table-item">
+                                                <div class="js-table-key">
+                                                    <a href="#" class="btn"><i class="icon-leaf"></i> end</a>
+                                                </div>
+                                                <div class="js-table-value">
+                                                    <input type="text" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="js-extend"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="upload-image" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="upload-image-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="upload-image-label">上传图片</h3>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body-left">
+                <label>存储路径选择</label>
+                <select name="path">
+                    <option value="1">/a/b</option>
+                    <option value="2">/a/c</option>
+                    <option value="3">/a/d</option>
+                </select>
+                <label>类型</label>
+                <select name="type">
+                    <option value="1">Type A</option>
+                    <option value="2">Type B</option>
+                    <option value="3">Type C</option>
+                </select>
+                <label>上传图片</label>
+                <a href="javascript:;" class="btn btn-primary">Upload</a>
+            </div>
+            <div class="modal-body-right">
+                <img src="img/gyy.jpg" alt="" style="height:150px">
+            </div>
+            <div style="clear:both; height:0;"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+            <button class="btn btn-primary">保存</button>
+        </div>
+    </div>
+
+    
+    <script src="js/jquery-1.9.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jquery.sortable.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/jquery.pikaday.js"></script>
+
+    <script type="text/javascript" src="js/json-schema.js"></script>
+    <script type="text/javascript">
+        $(".sortable").sortable({
+            handle: '.js-box-head'
+        });
+
+        $("#tt").on("click", function() {
+            var $box = $(this).parent().parent().parent().parent().parent().find(">.js-extend");
+            if ($box.is(":visible")) {
+                $(this).html('展开 <i class="icon-chevron-down"></i>');
+                $box.slideUp();
+            } else {
+                $box.slideDown();
+                $(this).html('收起 <i class="icon-chevron-up"></i>');
+            }
+        });
+
+        $("input.datepicker").pikaday({format: "YYYY-MM-DD"});
+
+        $(".js-table-key a").tooltip();
+
+    </script>
+</body>
+</html>

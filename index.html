@@ -55,7 +55,7 @@
                     <div class="control-group">
                         <label class="control-label" >描述</label>
                         <div class="controls">
-                            <input type="text" placeholder="description" name="desc" required>
+                            <input type="text" placeholder="description" name="desc" />
                         </div>
                     </div>
                     <div class="control-group">
@@ -84,7 +84,6 @@
     <script type="text/javascript" src="js/json-schema.js"></script>
     <script type="text/javascript">
         var editor = new JsonSchema.Editor({root: $("#struct-root")});
-        editor.init();
 
         editor.setData([{
             key: "title",
