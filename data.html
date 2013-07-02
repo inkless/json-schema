@@ -51,6 +51,39 @@
         <div class="js-table-value"></div>
     </div>
     </script>
+
+    <div id="upload-image" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="upload-image-label" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="upload-image-label">上传图片</h3>
+        </div>
+        <div class="modal-body">
+            <div class="modal-body-left">
+                <label>存储路径选择</label>
+                <select name="path">
+                    <option value="1">/a/b</option>
+                    <option value="2">/a/c</option>
+                    <option value="3">/a/d</option>
+                </select>
+                <label>类型</label>
+                <select name="type">
+                    <option value="1">Type A</option>
+                    <option value="2">Type B</option>
+                    <option value="3">Type C</option>
+                </select>
+                <label>上传图片</label>
+                <a href="javascript:;" class="btn btn-primary">Upload</a>
+            </div>
+            <div class="modal-body-right">
+                <img src="img/gyy.jpg" alt="" style="height:150px">
+            </div>
+            <div style="clear:both; height:0;"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">取消</button>
+            <button class="btn btn-primary">保存</button>
+        </div>
+    </div>
     
     <script src="js/jquery-1.9.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -62,7 +95,32 @@
     <script type="text/javascript">
         var dataSchema = [{"key":"title","desc":"title","type":"leaf"},{"key":"content","desc":"content","type":"object","struct":[{"key":"title","desc":"t","type":"leaf"},{"key":"text","desc":"tt","type":"leaf"}]},{"key":"comments","desc":"comments","type":"list","struct":[{"key":"text","desc":"text","type":"leaf"},{"key":"body","desc":"body","type":"object","struct":[{"key":"text","desc":"t","type":"leaf","input":{"type":"text"}},{"key":"time","desc":"time","type":"leaf","input":{"type":"time"}},{"key":"image","desc":"image","type":"leaf","input":{"type":"image"}}]},{"key":"score","desc":"score","type":"leaf"}]},{"key":"version","desc":"version","type":"leaf"},{"key":"notice","desc":"notice","type":"leaf"}];
 
-        var currentData = {};
+        // var dataSchema = [{"key":"root","desc":"root","type":"list","struct":[{"key":"remarks","desc":"备注","type":"leaf"},{"key":"expand","desc":"是否展开","type":"leaf"},{"key":"title","desc":"标题","type":"leaf"},{"key":"list","desc":"列表信息","type":"object","struct":[{"key":"title","desc":"标题","type":"leaf"},{"key":"web_url","desc":"web url","type":"leaf"},{"key":"wap_url","desc":"wap url","type":"leaf"},{"key":"highlight","desc":"是否高亮","type":"leaf"},{"key":"remarks","desc":"备注","type":"leaf"}]}]}];
+        var currentData = {
+            root: [{
+                remarks: '这是一个备注',
+                expand: 1,
+                title: '这是一个标题',
+                list: {
+                    title: '标题标题',
+                    web_url: 'http://www.baidu.com',
+                    wap_url: 'http://m.baidu.com',
+                    highlight: 1,
+                    remarks: '没啥了'
+                }
+            }, {
+                remarks: '这是另一个备注',
+                expand: 1,
+                title: '这是另一个标题',
+                list: {
+                    title: '标题标题2222',
+                    web_url: 'http://www.baidu.com/video',
+                    wap_url: 'http://m.baidu.com/video',
+                    highlight: 1,
+                    remarks: '没啥了'
+                }
+            }]
+        };
 
         var dataEditor = new JsonSchema.dataEditor({
             root: $(".main"),
