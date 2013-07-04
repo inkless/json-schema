@@ -97,14 +97,14 @@
 
         // var dataSchema = [{"key":"root","desc":"root","type":"list","struct":[{"key":"remarks","desc":"备注","type":"leaf"},{"key":"expand","desc":"是否展开","type":"leaf"},{"key":"title","desc":"标题","type":"leaf"},{"key":"list","desc":"列表信息","type":"object","struct":[{"key":"title","desc":"标题","type":"leaf"},{"key":"web_url","desc":"web url","type":"leaf"},{"key":"wap_url","desc":"wap url","type":"leaf"},{"key":"highlight","desc":"是否高亮","type":"leaf"},{"key":"remarks","desc":"备注","type":"leaf"}]}]}];
         
-        var dataSchema = [{"key":"root","desc":"root","type":"list","struct":[{"key":"remarks","desc":"备注","type":"leaf"},{"key":"expand","desc":"是否展开","type":"leaf"},{"key":"title","desc":"标题","type":"leaf"},{"key":"list","desc":"列表信息","type":"object","struct":[{"key":"title","desc":"标题","type":"leaf"},{"key":"web_url","desc":"web url","type":"leaf"},{"key":"wap_url","desc":"wap url","type":"leaf"},{"key":"highlight","desc":"是否高亮","type":"leaf"},{"key":"remarks","desc":"备注","type":"leaf"},{"key":"time","desc":"时间","type":"leaf","input":{"type":"time"}},{"key":"image","desc":"图片","type":"leaf","input":{"type":"image"}}]}]}];
+        var dataSchema = [{"key":"root","desc":"root","type":"list","struct":[{"key":"remarks","desc":"备注","type":"leaf"},{"key":"expand","desc":"是否展开","type":"leaf"},{"key":"title","desc":"标题","type":"leaf"},{"key":"list","desc":"列表信息","type":"list","struct":[{"key":"title","desc":"标题","type":"leaf"},{"key":"web_url","desc":"web url","type":"leaf"},{"key":"wap_url","desc":"wap url","type":"leaf"},{"key":"highlight","desc":"是否高亮","type":"leaf"},{"key":"remarks","desc":"备注","type":"leaf"},{"key":"time","desc":"时间","type":"leaf","input":{"type":"time"}},{"key":"image","desc":"图片","type":"leaf","input":{"type":"image"}}]}]}];
 
         var currentData = {
             root: [{
                 remarks: '这是一个备注',
                 expand: 1,
                 title: '这是一个标题',
-                list: {
+                list: [{
                     title: '标题标题',
                     web_url: 'http://www.baidu.com',
                     wap_url: 'http://m.baidu.com',
@@ -112,12 +112,12 @@
                     remarks: '没啥了',
                     time: '2013-07-10',
                     image: ''
-                }
+                }]
             }, {
                 remarks: '这是另一个备注',
                 expand: 1,
                 title: '这是另一个标题',
-                list: {
+                list: [{
                     title: '标题标题2222',
                     web_url: 'http://www.baidu.com/video',
                     wap_url: 'http://m.baidu.com/video',
@@ -125,7 +125,7 @@
                     remarks: '没啥了',
                     time: '2013-07-12',
                     image: ''
-                }
+                }]
             }]
         };
 
